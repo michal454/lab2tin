@@ -1,0 +1,362 @@
+:root {
+    --bg: #efefef;
+    --surface: #f5f5f5;
+    --card: #ffffff;
+    --header: #ffffff;
+    --accent: #ef5a47;
+    --accent-dark: #d94a38;
+    --text: #2f2f2f;
+    --muted: #6a6a6a;
+    --shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 10px 24px rgba(0, 0, 0, 0.14);
+    --radius: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 18px 36px;
+    background: var(--header);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.logo-wrap {
+    flex: 1;
+}
+
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.logo-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8ad36a, #4bb543 45%, #5aa9ff 46%, #2f7bd9 100%);
+    box-shadow: inset 0 0 0 4px #fff;
+}
+
+.site-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+}
+
+.site-nav a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 6px 2px;
+    transition: color 0.25s ease, text-decoration-color 0.25s ease;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+    text-decoration-color: transparent;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+    color: var(--accent-dark);
+    text-decoration-line: underline;
+    text-decoration-color: currentColor;
+}
+
+.menu-toggle,
+.hamburger {
+    display: none;
+}
+
+.page-content {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 56px 18px 40px;
+}
+
+.intro-banner {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 22px 18px;
+    margin-bottom: 28px;
+}
+
+.intro-banner h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.screen-label {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.label-medium,
+.label-tablet,
+.label-phone {
+    display: none;
+}
+
+.cards-section {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+}
+
+.card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card h2 {
+    font-size: 2.1rem;
+    padding: 22px 22px 18px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.card-body {
+    padding: 22px;
+}
+
+.card p {
+    font-size: 1rem;
+    margin-bottom: 24px;
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 14px 28px;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.cta-button:hover,
+.cta-button:focus-visible {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f0f0f0;
+}
+
+.gallery-item img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.06);
+}
+
+.site-footer {
+    background: #2f2f32;
+    color: #fff;
+    text-align: center;
+    padding: 26px 16px;
+    margin-top: 40px;
+    font-size: 0.98rem;
+}
+
+@media (max-width: 992px) {
+    .page-content {
+        padding-top: 48px;
+    }
+
+    .intro-banner h1 {
+        font-size: 1.8rem;
+    }
+
+    .label-desktop {
+        display: none;
+    }
+
+    .label-medium {
+        display: block;
+    }
+
+    .site-nav a,
+    .screen-label,
+    .card p,
+    .site-footer {
+        font-size: 0.95rem;
+    }
+
+    .card h2 {
+        font-size: 1.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        padding: 16px 20px;
+        flex-wrap: wrap;
+    }
+
+    .logo-wrap {
+        flex: unset;
+    }
+
+    .hamburger {
+        display: block;
+        margin-left: auto;
+        font-size: 2rem;
+        color: var(--accent);
+        cursor: pointer;
+        line-height: 1;
+        user-select: none;
+    }
+
+    .site-nav {
+        display: none;
+        width: 100%;
+        order: 3;
+    }
+
+    .site-nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-top: 10px;
+    }
+
+    .menu-toggle:checked + .hamburger + .site-nav {
+        display: block;
+    }
+
+    .cards-section {
+        grid-template-columns: 1fr;
+    }
+
+    .label-desktop,
+    .label-medium {
+        display: none;
+    }
+
+    .label-tablet {
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        font-size: 15px;
+    }
+
+    .site-header {
+        padding: 14px 16px;
+    }
+
+    .logo-link {
+        font-size: 0.95rem;
+        gap: 8px;
+    }
+
+    .logo-mark {
+        width: 28px;
+        height: 28px;
+    }
+
+    .hamburger {
+        font-size: 1.85rem;
+    }
+
+    .page-content {
+        padding: 42px 12px 28px;
+    }
+
+    .intro-banner {
+        padding: 18px 14px;
+    }
+
+    .intro-banner h1 {
+        font-size: 1.55rem;
+    }
+
+    .label-tablet {
+        display: none;
+    }
+
+    .label-phone {
+        display: block;
+    }
+
+    .card h2 {
+        font-size: 1.55rem;
+        padding: 18px 18px 14px;
+    }
+
+    .card-body {
+        padding: 18px;
+    }
+
+    .card p,
+    .screen-label,
+    .site-nav a,
+    .site-footer {
+        font-size: 0.92rem;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-button {
+        padding: 12px 22px;
+        font-size: 0.95rem;
+    }
+}

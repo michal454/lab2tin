@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przykład Responsywnej Strony Internetowej</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo-wrap">
+            <a href="#" class="logo-link" aria-label="Strona główna">
+                <span class="logo-mark" aria-hidden="true"></span>
+                <span class="logo-text">Logo RWD</span>
+            </a>
+        </div>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Przełącz menu">
+        <label for="menu-toggle" class="hamburger" aria-hidden="true">☰</label>
+
+        <nav class="site-nav" aria-label="Menu główne">
+            <ul>
+                <li><a href="#home">Strona główna</a></li>
+                <li><a href="#about">O nas</a></li>
+                <li><a href="#offer">Oferta</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-content" id="home">
+        <section class="intro-banner" aria-label="Opis widoku responsywnego">
+            <h1>Widok responsywny</h1>
+            <p class="screen-label label-desktop">Widok dla dużych ekranów (&gt;992px)</p>
+            <p class="screen-label label-medium">Widok dla średnich ekranów (768-992px)</p>
+            <p class="screen-label label-tablet">Widok dla tabletów (576-768px)</p>
+            <p class="screen-label label-phone">Widok dla telefonów (&lt;576px)</p>
+        </section>
+
+        <section class="cards-section" aria-label="Główna treść strony">
+            <article class="card" id="about">
+                <h2>Element 1</h2>
+                <div class="card-body">
+                    <p>
+                        W dzisiejszym świecie nie tylko komputery wyświetlają strony internetowe.
+                        Wiele różnych urządzeń ma ekrany o różnych wymiarach. Wyzwaniem jest
+                        zaprojektowanie strony, która będzie czytelna na każdym obecnie dostępnym
+                        urządzeniu. Nazywamy to RWD - responsywne projektowanie stron.
+                    </p>
+                    <a href="#offer" class="cta-button">Dowiedz się więcej</a>
+                </div>
+            </article>
+
+            <article class="card" id="offer">
+                <h2>Element 2</h2>
+                <div class="card-body">
+                    <div class="gallery" aria-label="Galeria czterech zdjęć">
+                        <figure class="gallery-item">
+                            <img src="https://picsum.photos/seed/rwd1/300/200" alt="Zdjęcie 1">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://picsum.photos/seed/rwd2/300/200" alt="Zdjęcie 2">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://picsum.photos/seed/rwd3/300/200" alt="Zdjęcie 3">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://picsum.photos/seed/rwd4/300/200" alt="Zdjęcie 4">
+                        </figure>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card" id="contact">
+                <h2>Element 3</h2>
+                <div class="card-body">
+                    <p>
+                        RWD to podejście do projektowania stron internetowych, które sprawia,
+                        że strony dobrze wyglądają na wszystkich urządzeniach. Responsywne strony
+                        internetowe używają CSS media queries, elastycznych układów i elastycznych
+                        obrazów, aby dostosować się do ekranu, na którym są wyświetlane.
+                    </p>
+                    <a href="#home" class="cta-button">Sprawdź przykłady</a>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 Przykład Responsywnej Strony Internetowej</p>
+    </footer>
+</body>
+</html>
