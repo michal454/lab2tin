@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Przykład Responsywnej Strony Internetowej</title>
+    <title>TechWave – Nowoczesne Technologie</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header class="site-header">
         <div class="logo-wrap">
-            <a href="#" class="logo-link" aria-label="Strona główna">
+            <a href="#home" class="logo-link" aria-label="TechWave – strona główna">
                 <span class="logo-mark" aria-hidden="true"></span>
-                <span class="logo-text">Logo RWD</span>
+                <span class="logo-text">TechWave</span>
             </a>
         </div>
 
@@ -24,73 +25,95 @@
         <nav class="site-nav" aria-label="Menu główne">
             <ul>
                 <li><a href="#home">Strona główna</a></li>
-                <li><a href="#about">O nas</a></li>
-                <li><a href="#offer">Oferta</a></li>
+                <li class="has-submenu">
+                    <a href="#services">Usługi</a>
+                    <ul class="submenu">
+                        <li><a href="#services">Web Design</a></li>
+                        <li><a href="#services">Mobile Apps</a></li>
+                        <li><a href="#services">Cloud</a></li>
+                    </ul>
+                </li>
                 <li><a href="#contact">Kontakt</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="page-content" id="home">
-        <section class="intro-banner" aria-label="Opis widoku responsywnego">
-            <h1>Widok responsywny</h1>
-            <p class="screen-label label-desktop">Widok dla dużych ekranów (&gt;992px)</p>
-            <p class="screen-label label-medium">Widok dla średnich ekranów (768-992px)</p>
-            <p class="screen-label label-tablet">Widok dla tabletów (576-768px)</p>
-            <p class="screen-label label-phone">Widok dla telefonów (&lt;576px)</p>
+    <main>
+
+        <section class="hero" id="home" aria-label="Sekcja powitalna">
+            <div class="hero__content">
+                <h1>Tworzymy cyfrową przyszłość razem z Tobą</h1>
+                <p>TechWave to nowoczesna firma technologiczna specjalizująca się w tworzeniu aplikacji webowych, mobilnych i rozwiązań chmurowych. Pomagamy firmom rosnąć dzięki innowacyjnym technologiom.</p>
+                <a href="#services" class="btn">Dowiedz się więcej</a>
+            </div>
         </section>
 
-        <section class="cards-section" aria-label="Główna treść strony">
-            <article class="card" id="about">
-                <h2>Element 1</h2>
-                <div class="card-body">
-                    <p>
-                        W dzisiejszym świecie nie tylko komputery wyświetlają strony internetowe.
-                        Wiele różnych urządzeń ma ekrany o różnych wymiarach. Wyzwaniem jest
-                        zaprojektowanie strony, która będzie czytelna na każdym obecnie dostępnym
-                        urządzeniu. Nazywamy to RWD - responsywne projektowanie stron.
-                    </p>
-                    <a href="#offer" class="cta-button">Dowiedz się więcej</a>
+        <section class="stats" aria-label="Statystyki firmy">
+            <div class="stats__container">
+                <div class="stat-box">
+                    <span class="stat-box__value">150+</span>
+                    <span class="stat-box__label">Zrealizowanych projektów</span>
                 </div>
-            </article>
-
-            <article class="card" id="offer">
-                <h2>Element 2</h2>
-                <div class="card-body">
-                    <div class="gallery" aria-label="Galeria czterech zdjęć">
-                        <figure class="gallery-item">
-                            <img src="https://picsum.photos/seed/rwd1/300/200" alt="Zdjęcie 1">
-                        </figure>
-                        <figure class="gallery-item">
-                            <img src="https://picsum.photos/seed/rwd2/300/200" alt="Zdjęcie 2">
-                        </figure>
-                        <figure class="gallery-item">
-                            <img src="https://picsum.photos/seed/rwd3/300/200" alt="Zdjęcie 3">
-                        </figure>
-                        <figure class="gallery-item">
-                            <img src="https://picsum.photos/seed/rwd4/300/200" alt="Zdjęcie 4">
-                        </figure>
-                    </div>
+                <div class="stat-box">
+                    <span class="stat-box__value">98%</span>
+                    <span class="stat-box__label">Zadowolonych klientów</span>
                 </div>
-            </article>
-
-            <article class="card" id="contact">
-                <h2>Element 3</h2>
-                <div class="card-body">
-                    <p>
-                        RWD to podejście do projektowania stron internetowych, które sprawia,
-                        że strony dobrze wyglądają na wszystkich urządzeniach. Responsywne strony
-                        internetowe używają CSS media queries, elastycznych układów i elastycznych
-                        obrazów, aby dostosować się do ekranu, na którym są wyświetlane.
-                    </p>
-                    <a href="#home" class="cta-button">Sprawdź przykłady</a>
+                <div class="stat-box">
+                    <span class="stat-box__value">12</span>
+                    <span class="stat-box__label">Lat doświadczenia</span>
                 </div>
-            </article>
+                <div class="stat-box">
+                    <span class="stat-box__value">40+</span>
+                    <span class="stat-box__label">Ekspertów w zespole</span>
+                </div>
+            </div>
         </section>
+
+        <section class="services" id="services" aria-label="Nasze usługi">
+            <h2 class="section-title">Nasze Usługi</h2>
+            <div class="services__grid">
+                <article class="card card--web">
+                    <div class="card-icon">&#127760;</div>
+                    <h3>Web Design</h3>
+                    <p>Projektujemy nowoczesne, responsywne strony internetowe i aplikacje webowe, które zachwycają użytkowników i zwiększają konwersję.</p>
+                </article>
+                <article class="card card--mobile">
+                    <div class="card-icon">&#128241;</div>
+                    <h3>Mobile Apps</h3>
+                    <p>Tworzymy natywne i hybrydowe aplikacje mobilne na iOS oraz Android, w pełni dostosowane do potrzeb Twojego biznesu.</p>
+                </article>
+                <article class="card card--cloud">
+                    <div class="card-icon">&#9729;</div>
+                    <h3>Cloud</h3>
+                    <p>Oferujemy kompleksowe rozwiązania chmurowe – migrację, skalowanie infrastruktury i zarządzanie usługami w chmurze.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="contact" id="contact" aria-label="Formularz kontaktowy">
+            <h2 class="section-title">Skontaktuj się z nami</h2>
+            <form class="contact__form" action="#" method="post" novalidate>
+                <div class="form-group">
+                    <label for="name">Imię i nazwisko</label>
+                    <input type="text" id="name" name="name" placeholder="Jan Kowalski" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Adres e-mail</label>
+                    <input type="email" id="email" name="email" placeholder="jan@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Wiadomość</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Twoja wiadomość..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn--submit">Wyślij wiadomość</button>
+            </form>
+        </section>
+
     </main>
 
     <footer class="site-footer">
-        <p>© 2026 Przykład Responsywnej Strony Internetowej</p>
+        <p>&copy; 2026 TechWave &ndash; Wszelkie prawa zastrzeżone</p>
     </footer>
+
 </body>
 </html>
