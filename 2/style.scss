@@ -1,0 +1,654 @@
+// ============================================================
+// TechWave – style.scss
+// ============================================================
+@use 'sass:color';
+
+// ============================================================
+// 1. ZMIENNE (Variables) – co najmniej 5
+// ============================================================
+$primary-color:    #2563eb;
+$secondary-color:  #7c3aed;
+$dark-bg:          #1e293b;
+$light-bg:         #f8fafc;
+$text-color:       #0f172a;
+$muted-color:      #64748b;
+$border-radius:    12px;
+$font-family:      'Roboto', Arial, sans-serif;
+$transition-speed: 0.3s;
+$hero-gradient:    linear-gradient(135deg, #1e3a8a 0%, #1e293b 100%);
+
+// ============================================================
+// 2. MAPY (Maps) – kolory kart usług, użyte w @each
+// ============================================================
+$card-colors: (
+  'web':    #2563eb,
+  'mobile': #16a34a,
+  'cloud':  #9333ea
+);
+
+// ============================================================
+// 5. @FUNCTION – przeliczenie px na rem
+// ============================================================
+@function rem($px) {
+  @return $px * 0.0625rem;
+}
+
+// ============================================================
+// 4. MIXIN Z PARAMETREM – użyty wielokrotnie
+// ============================================================
+@mixin flex-layout($direction: row, $gap: 16px) {
+  display: flex;
+  flex-direction: $direction;
+  gap: $gap;
+
+  // 9. @if wewnątrz mixinu
+  @if $direction == column {
+    align-items: stretch;
+  } @else {
+    align-items: center;
+  }
+}
+
+@mixin shadow($level: 1) {
+  @if $level == 1 {
+    box-shadow: 0 rem(4) rem(16) rgba(0, 0, 0, 0.08);
+  } @else if $level == 2 {
+    box-shadow: 0 rem(8) rem(32) rgba(0, 0, 0, 0.15);
+  } @else {
+    box-shadow: 0 rem(20) rem(60) rgba(0, 0, 0, 0.25);
+  }
+}
+
+// ============================================================
+// 6. @EXTEND – placeholder dziedziczony przez 2+ selektory
+// ============================================================
+%card-base {
+  background: #ffffff;
+  border-radius: $border-radius;
+  @include shadow(1);
+  overflow: hidden;
+  transition: transform $transition-speed ease,
+              box-shadow $transition-speed ease;
+
+  &:hover {
+    transform: translateY(rem(-6));
+    @include shadow(2);
+  }
+}
+
+%inner-container {
+  max-width: rem(1100);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: rem(24);
+  padding-right: rem(24);
+}
+
+// ============================================================
+// 10. @KEYFRAMES – animacje użyte na elementach
+// ============================================================
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(rem(40));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba($primary-color, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 rem(10) rgba($primary-color, 0);
+  }
+}
+
+// ============================================================
+// 7. @FOR – opóźnienia animacji dla 4 elementów .stat-box
+// ============================================================
+@for $i from 1 through 4 {
+  .stat-box:nth-child(#{$i}) {
+    animation: fadeInUp 0.6s ease #{$i * 0.15}s both;
+  }
+}
+
+// ============================================================
+// 8. @EACH – iteracja po mapie kolorów kart (+ 9. @if w środku)
+// ============================================================
+@each $name, $color in $card-colors {
+  .card--#{$name} {
+    .card-icon {
+      background: $color;
+
+      // 9. @if – kolor tekstu ikony zależny od jasności tła
+      @if color.channel($color, "lightness", $space: hsl) > 55% {
+        color: $text-color;
+      } @else {
+        color: #ffffff;
+      }
+    }
+
+    &:hover .card-icon {
+      transform: scale(1.15) rotate(6deg);
+    }
+  }
+}
+
+// ============================================================
+// BASE RESET
+// ============================================================
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family;
+  background: $light-bg;
+  color: $text-color;
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+// ============================================================
+// HEADER / NAWIGACJA
+// ============================================================
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  @include flex-layout(row, rem(24));
+  justify-content: space-between;
+  padding: rem(18) rem(36);
+  background: #ffffff;
+  box-shadow: 0 rem(2) rem(8) rgba(0, 0, 0, 0.08);
+
+  // 3. Zagnieżdżanie + & – liczne użycia poniżej
+  .logo-wrap {
+    flex: 1;
+  }
+
+  .logo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: rem(12);
+    text-decoration: none;
+    color: $text-color;
+
+    &:hover .logo-text {
+      color: color.adjust($primary-color, $lightness: -10%);
+    }
+  }
+
+  .logo-mark {
+    width: rem(36);
+    height: rem(36);
+    border-radius: 50%;
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-size: rem(22);
+    font-weight: 700;
+    color: $primary-color;
+    transition: color $transition-speed ease;
+  }
+}
+
+.site-nav {
+  ul {
+    display: flex;
+    align-items: center;
+    gap: rem(28);
+    list-style: none;
+  }
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+    font-size: rem(16);
+    font-weight: 500;
+    padding: rem(6) rem(4);
+    transition: color $transition-speed ease;
+
+    &:hover,
+    &:focus-visible {
+      color: $primary-color;
+    }
+  }
+
+  .has-submenu {
+    position: relative;
+
+    & > a::after {
+      content: ' ▾';
+      font-size: rem(11);
+      opacity: 0.6;
+    }
+
+    &:hover .submenu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+  }
+
+  .submenu {
+    position: absolute;
+    top: calc(100% + rem(8));
+    left: 0;
+    background: #ffffff;
+    border-radius: $border-radius;
+    @include shadow(1);
+    padding: rem(8) 0;
+    min-width: rem(160);
+    z-index: 100;
+    list-style: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(rem(-8));
+    transition: opacity $transition-speed ease,
+                transform $transition-speed ease;
+
+    li {
+      display: block;
+    }
+
+    a {
+      display: block;
+      padding: rem(10) rem(18);
+      font-size: rem(14);
+      color: $text-color;
+
+      &:hover {
+        background: $light-bg;
+        color: $primary-color;
+        padding-left: rem(22);
+      }
+    }
+  }
+}
+
+.menu-toggle,
+.hamburger {
+  display: none;
+}
+
+// ============================================================
+// PRZYCISK .btn  (korzysta z %card-base przez @extend)
+// ============================================================
+.btn {
+  display: inline-block;
+  padding: rem(14) rem(36);
+  background: $primary-color;
+  color: #ffffff;
+  font-family: $font-family;
+  font-weight: 700;
+  font-size: rem(16);
+  border-radius: rem(999);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  animation: pulseGlow 2.5s infinite;
+  transition: background $transition-speed ease,
+              transform $transition-speed ease;
+
+  &:hover,
+  &:focus-visible {
+    background: color.adjust($primary-color, $lightness: -10%);
+    transform: translateY(rem(-3));
+    animation: none;
+    outline: none;
+  }
+
+  &--submit {
+    width: 100%;
+    padding: rem(16) rem(32);
+    font-size: rem(16);
+    text-align: center;
+  }
+}
+
+// ============================================================
+// SEKCJA HERO
+// ============================================================
+.hero {
+  background: $hero-gradient;
+  color: #ffffff;
+  padding: rem(120) rem(24) rem(100);
+  text-align: center;
+
+  &__content {
+    @extend %inner-container;
+    max-width: rem(740);
+    animation: fadeInUp 0.9s ease both;
+  }
+
+  h1 {
+    font-size: rem(50);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: rem(20);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-size: rem(18);
+    color: rgba(#ffffff, 0.85);
+    margin-bottom: rem(40);
+    line-height: 1.75;
+  }
+}
+
+// ============================================================
+// SEKCJA STATS
+// ============================================================
+.stats {
+  background: $dark-bg;
+  padding: rem(64) rem(24);
+
+  &__container {
+    @extend %inner-container;
+    @include flex-layout(row, rem(0));
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.stat-box {
+  @extend %card-base;
+  @include flex-layout(column, rem(8));
+  justify-content: center;
+  text-align: center;
+  padding: rem(36) rem(48);
+  background: rgba(#ffffff, 0.05);
+  color: #ffffff;
+  flex: 1;
+  min-width: rem(180);
+  border-radius: 0;
+  box-shadow: none;
+  border-right: 1px solid rgba(#ffffff, 0.1);
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &:hover {
+    background: rgba(#ffffff, 0.09);
+    transform: none;
+    box-shadow: none;
+  }
+
+  &__value {
+    font-size: rem(52);
+    font-weight: 700;
+    color: $primary-color;
+    line-height: 1;
+  }
+
+  &__label {
+    font-size: rem(13);
+    color: rgba(#ffffff, 0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+}
+
+// ============================================================
+// SEKCJA SERVICES
+// ============================================================
+.services {
+  padding: rem(88) rem(24);
+
+  > .section-title {
+    text-align: center;
+    font-size: rem(38);
+    font-weight: 700;
+    margin-bottom: rem(52);
+    color: $text-color;
+  }
+
+  &__grid {
+    @extend %inner-container;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: rem(28);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.card {
+  @extend %card-base;
+  padding: rem(36) rem(28);
+  text-align: center;
+
+  .card-icon {
+    width: rem(68);
+    height: rem(68);
+    border-radius: 50%;
+    @include flex-layout(row, 0);
+    justify-content: center;
+    font-size: rem(30);
+    margin: 0 auto rem(20);
+    transition: transform $transition-speed ease;
+  }
+
+  h3 {
+    font-size: rem(22);
+    font-weight: 700;
+    margin-bottom: rem(14);
+    color: $text-color;
+  }
+
+  p {
+    font-size: rem(15);
+    color: $muted-color;
+    line-height: 1.75;
+  }
+}
+
+// ============================================================
+// SEKCJA CONTACT
+// ============================================================
+.contact {
+  background: #ffffff;
+  padding: rem(88) rem(24);
+  @include shadow(1);
+
+  > .section-title {
+    text-align: center;
+    font-size: rem(38);
+    font-weight: 700;
+    margin-bottom: rem(52);
+    color: $text-color;
+  }
+
+  &__form {
+    @extend %inner-container;
+    max-width: rem(600);
+  }
+}
+
+.form-group {
+  margin-bottom: rem(24);
+
+  label {
+    display: block;
+    font-weight: 500;
+    font-size: rem(15);
+    margin-bottom: rem(8);
+    color: $text-color;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: rem(13) rem(16);
+    border: 2px solid #e2e8f0;
+    border-radius: $border-radius;
+    font-family: $font-family;
+    font-size: rem(16);
+    color: $text-color;
+    background: $light-bg;
+    transition: border-color $transition-speed ease,
+                box-shadow $transition-speed ease;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 rem(4) rgba($primary-color, 0.12);
+      background: #ffffff;
+    }
+
+    &::placeholder {
+      color: $muted-color;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: rem(140);
+  }
+}
+
+// ============================================================
+// FOOTER
+// ============================================================
+.site-footer {
+  background: $dark-bg;
+  color: rgba(#ffffff, 0.65);
+  text-align: center;
+  padding: rem(30) rem(16);
+  font-size: rem(14);
+}
+
+// ============================================================
+// 11. RESPONSYWNOŚĆ – media query max-width: 768px
+// ============================================================
+@media (max-width: 768px) {
+  .site-header {
+    padding: rem(16) rem(20);
+    flex-wrap: wrap;
+
+    .logo-wrap {
+      flex: unset;
+    }
+  }
+
+  .hamburger {
+    display: block;
+    margin-left: auto;
+    font-size: rem(32);
+    color: $primary-color;
+    cursor: pointer;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .site-nav {
+    display: none;
+    width: 100%;
+    order: 3;
+
+    ul {
+      @include flex-layout(column, rem(4));
+      align-items: flex-start;
+      padding-top: rem(12);
+      padding-bottom: rem(8);
+    }
+
+    .submenu {
+      position: static;
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+      box-shadow: none;
+      background: $light-bg;
+      border-radius: $border-radius;
+      margin-top: rem(4);
+      padding: rem(4) 0;
+    }
+  }
+
+  .menu-toggle:checked + .hamburger + .site-nav {
+    display: block;
+  }
+
+  .hero {
+    padding: rem(72) rem(20) rem(56);
+
+    h1 {
+      font-size: rem(32);
+    }
+
+    p {
+      font-size: rem(16);
+    }
+  }
+
+  .stats {
+    padding: rem(40) rem(16);
+
+    &__container {
+      flex-direction: column;
+    }
+  }
+
+  .stat-box {
+    border-right: none;
+    border-bottom: 1px solid rgba(#ffffff, 0.1);
+    padding: rem(24) rem(20);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &__value {
+      font-size: rem(38);
+    }
+  }
+
+  .services {
+    padding: rem(56) rem(16);
+
+    > .section-title {
+      font-size: rem(28);
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .contact {
+    padding: rem(56) rem(16);
+
+    > .section-title {
+      font-size: rem(28);
+    }
+
+    &__form {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
