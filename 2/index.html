@@ -11,6 +11,7 @@
 </head>
 <body>
 
+    <!-- Boczne menu (sidebar) -->
     <header class="site-header">
         <div class="logo-wrap">
             <a href="#home" class="logo-link" aria-label="TechWave – strona główna">
@@ -20,7 +21,7 @@
         </div>
 
         <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Przełącz menu">
-        <label for="menu-toggle" class="hamburger" aria-hidden="true">☰</label>
+        <label for="menu-toggle" class="hamburger" aria-hidden="true">&#9776;</label>
 
         <nav class="site-nav" aria-label="Menu główne">
             <ul>
@@ -38,82 +39,87 @@
         </nav>
     </header>
 
-    <main>
+    <!-- Główna treść – przesunieta o szerokość sidebara -->
+    <div class="page-wrapper">
 
-        <section class="hero" id="home" aria-label="Sekcja powitalna">
-            <div class="hero__content">
-                <h1>Tworzymy cyfrową przyszłość razem z Tobą</h1>
-                <p>TechWave to nowoczesna firma technologiczna specjalizująca się w tworzeniu aplikacji webowych, mobilnych i rozwiązań chmurowych. Pomagamy firmom rosnąć dzięki innowacyjnym technologiom.</p>
-                <a href="#services" class="btn">Dowiedz się więcej</a>
-            </div>
-        </section>
+        <main>
 
-        <section class="stats" aria-label="Statystyki firmy">
-            <div class="stats__container">
-                <div class="stat-box">
-                    <span class="stat-box__value">150+</span>
-                    <span class="stat-box__label">Zrealizowanych projektów</span>
+            <section class="hero" id="home" aria-label="Sekcja powitalna">
+                <div class="hero__content">
+                    <h1>Tworzymy cyfrową przyszłość razem z Tobą</h1>
+                    <p>TechWave to nowoczesna firma technologiczna specjalizująca się w tworzeniu aplikacji webowych, mobilnych i rozwiązań chmurowych. Pomagamy firmom rosnąć dzięki innowacyjnym technologiom.</p>
+                    <a href="#services" class="btn">Dowiedz się więcej</a>
                 </div>
-                <div class="stat-box">
-                    <span class="stat-box__value">98%</span>
-                    <span class="stat-box__label">Zadowolonych klientów</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-box__value">12</span>
-                    <span class="stat-box__label">Lat doświadczenia</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-box__value">40+</span>
-                    <span class="stat-box__label">Ekspertów w zespole</span>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="services" id="services" aria-label="Nasze usługi">
-            <h2 class="section-title">Nasze Usługi</h2>
-            <div class="services__grid">
-                <article class="card card--web">
-                    <div class="card-icon">&#127760;</div>
-                    <h3>Web Design</h3>
-                    <p>Projektujemy nowoczesne, responsywne strony internetowe i aplikacje webowe, które zachwycają użytkowników i zwiększają konwersję.</p>
-                </article>
-                <article class="card card--mobile">
-                    <div class="card-icon">&#128241;</div>
-                    <h3>Mobile Apps</h3>
-                    <p>Tworzymy natywne i hybrydowe aplikacje mobilne na iOS oraz Android, w pełni dostosowane do potrzeb Twojego biznesu.</p>
-                </article>
-                <article class="card card--cloud">
-                    <div class="card-icon">&#9729;</div>
-                    <h3>Cloud</h3>
-                    <p>Oferujemy kompleksowe rozwiązania chmurowe – migrację, skalowanie infrastruktury i zarządzanie usługami w chmurze.</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="contact" id="contact" aria-label="Formularz kontaktowy">
-            <h2 class="section-title">Skontaktuj się z nami</h2>
-            <form class="contact__form" action="#" method="post" novalidate>
-                <div class="form-group">
-                    <label for="name">Imię i nazwisko</label>
-                    <input type="text" id="name" name="name" placeholder="Jan Kowalski" required>
+            <section class="stats" aria-label="Statystyki firmy">
+                <div class="stats__container">
+                    <div class="stat-box">
+                        <span class="stat-box__value">150+</span>
+                        <span class="stat-box__label">Zrealizowanych projektów</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-box__value">98%</span>
+                        <span class="stat-box__label">Zadowolonych klientów</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-box__value">12</span>
+                        <span class="stat-box__label">Lat doświadczenia</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-box__value">40+</span>
+                        <span class="stat-box__label">Ekspertów w zespole</span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Adres e-mail</label>
-                    <input type="email" id="email" name="email" placeholder="jan@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Wiadomość</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Twoja wiadomość..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn--submit">Wyślij wiadomość</button>
-            </form>
-        </section>
+            </section>
 
-    </main>
+            <section class="services" id="services" aria-label="Nasze usługi">
+                <h2 class="section-title">Nasze Usługi</h2>
+                <div class="services__grid">
+                    <article class="card card--web">
+                        <div class="card-icon">&#127760;</div>
+                        <h3>Web Design</h3>
+                        <p>Projektujemy nowoczesne, responsywne strony internetowe i aplikacje webowe, które zachwycają użytkowników i zwiększają konwersję.</p>
+                    </article>
+                    <article class="card card--mobile">
+                        <div class="card-icon">&#128241;</div>
+                        <h3>Mobile Apps</h3>
+                        <p>Tworzymy natywne i hybrydowe aplikacje mobilne na iOS oraz Android, w pełni dostosowane do potrzeb Twojego biznesu.</p>
+                    </article>
+                    <article class="card card--cloud">
+                        <div class="card-icon">&#9729;</div>
+                        <h3>Cloud</h3>
+                        <p>Oferujemy kompleksowe rozwiązania chmurowe – migrację, skalowanie infrastruktury i zarządzanie usługami w chmurze.</p>
+                    </article>
+                </div>
+            </section>
 
-    <footer class="site-footer">
-        <p>&copy; 2026 TechWave &ndash; Wszelkie prawa zastrzeżone</p>
-    </footer>
+            <section class="contact" id="contact" aria-label="Formularz kontaktowy">
+                <h2 class="section-title">Skontaktuj się z nami</h2>
+                <form class="contact__form" action="#" method="post" novalidate>
+                    <div class="form-group">
+                        <label for="name">Imię i nazwisko</label>
+                        <input type="text" id="name" name="name" placeholder="Jan Kowalski" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adres e-mail</label>
+                        <input type="email" id="email" name="email" placeholder="jan@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Wiadomość</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Opisz swój projekt..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--submit">Wyślij wiadomość</button>
+                </form>
+            </section>
+
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2026 TechWave &ndash; Wszelkie prawa zastrzeżone</p>
+        </footer>
+
+    </div><!-- /.page-wrapper -->
 
 </body>
 </html>
